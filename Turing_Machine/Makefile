@@ -1,7 +1,6 @@
-# @Author: Micheal J. Roper, cpts 322, 04/29/19, Final Application: Macho Man TM
 # @File: Makefile
 
-PROGNAME = tm_ultra
+PROGNAME = pda
 CXXFLAGS = -g -Wall
 LDFLAGS = -g
 # For C++ programs
