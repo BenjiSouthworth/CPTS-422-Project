@@ -9,6 +9,8 @@
 
 using namespace std;
 
+string pda_file = "\0";
+
 int main(int argc, char* argv[])
 {
 
@@ -31,10 +33,11 @@ int main(int argc, char* argv[])
 	
 	string definition = argv[1];
 	string string_file = argv[1];
-	
+
 	definition.append(def);
 	string_file.append(str);
 
+    pda_file = definition;
 
 	def_file.open(definition);
 	str_file.open(string_file);

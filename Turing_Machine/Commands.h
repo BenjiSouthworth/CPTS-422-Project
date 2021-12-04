@@ -20,8 +20,6 @@ public:
 	Commands(ifstream& definition);
 
 	void runtime();
-
-	void delete_string();
 	
 	void exit_application();
 
@@ -39,10 +37,13 @@ public:
 
 	void show();
 
-	void truncate();
-
 	void view();
 
+    void display();
+
+    void open();
+
+    void close();
 };
 
 #endif
