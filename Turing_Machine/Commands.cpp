@@ -11,6 +11,8 @@
 
 using namespace std;
 
+extern string pda_file;
+
 Commands::Commands(ifstream& definition, ifstream& stringfile, string def_file, string str_file)
 {//this is the case if both files exist
 	
@@ -59,10 +61,6 @@ void Commands::runtime()
 
 		switch (input)
 		{
-		case 'D': case 'd':
-			delete_string();
-			break;
-
 		case 'X': case 'x':
 			exit_application();
 			break;
@@ -94,26 +92,22 @@ void Commands::runtime()
 			show();
 			break;
 
-		case 'T': case 't':
-			truncate();
+		case 'V': case 'v':
+            view();
 			break;
 
-		case 'V': case 'v':
-			break;
+        case 'D': case 'd':
+            display();
+            break;
+
+        case 'C': case 'c':
+            close();
+            break;
 
 		default:
 			cout << "Please Enter a valid Command" << endl;
 		}
 	}
-}
-
-void Commands::delete_string()
-{
-	int i;
-	cout << "Select Input String Number: ";
-	cin >> i;
-
-
 }
 
 void Commands::exit_application()
@@ -153,25 +147,8 @@ void Commands::list()
 	input_strings.view();
 }
 
-void Commands::truncate() //need to setup checking values, and return if press enter
+void Commands::quit()
 {
-	int trun = 0;
-	cout << "Number of Cells[" << configuration_settings.get_truncate() << "]: ";
-	cin >> trun;
-	if (trun < 0)
-	{
-		cout << "Please enter a number larger than 0." << endl;
-		return;
-	}
-	configuration_settings.set_truncate(trun);
-	cout << "Number of Transitions changed to " << configuration_settings.get_truncate() << endl;
-
-}
-
-
-void quit()
-{
-
 }
 
 void Commands::run()
@@ -219,5 +196,17 @@ void Commands::show()
 }
 
 void Commands::view()
+{
+    ifstream f(pda_file);
+
+    if(f.is_open())
+        cout << f.rdbuf();
+}
+
+void Commands::display()
+{
+}
+
+void Commands::close()
 {
 }
