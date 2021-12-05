@@ -1,7 +1,7 @@
 #ifndef Commands_H
 #define Commands_H
 
-#include "Turing_Machine.h"
+#include "pushdown_automaton.h"
 #include "Input_Strings.h"
 #include "Configuration_Settings.h"
 

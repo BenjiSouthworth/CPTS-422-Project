@@ -1,5 +1,5 @@
 #include "Commands.h"
-#include "Turing_Machine.h"
+#include "pushdown_automaton.h"
 #include "Input_Strings.h"
 #include "Configuration_Settings.h"
 
@@ -19,9 +19,9 @@ Commands::Commands(ifstream& definition, ifstream& stringfile, string def_file, 
 	configuration_settings.set_truncate(32);
 	
 	//read in the definition file
-	turing_machine.load(def_file);
+	turing_machine.load(def_file); //THIS IS WHAT NEEDS TO BE MODIFIED TO WORK WITH NEW DEF FILE TYPE
 	
-	cout << def_file << " has been successfully loaded!" << endl;
+	//cout << def_file << " has been successfully loaded!" << endl;
 
 
 	//check strings in string file

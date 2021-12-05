@@ -1,5 +1,5 @@
-#ifndef Turing_Machine_H
-#define Turing_Machine_H
+#ifndef Pushdown_Automaon_H
+#define Pushdown_Automaon_H
 
 #include "Tape.h"
 #include "input_alphabet.h"

@@ -1,6 +1,6 @@
 # @File: Makefile
 
-PROGNAME = pda
+PROGNAME = turing_machine
 CXXFLAGS = -g -Wall
 LDFLAGS = -g
 # For C++ programs
@@ -12,7 +12,7 @@ SRCS =  Commands.cpp Configuration_Settings.cpp \
 		Final_States.cpp Input_Strings.cpp input_alphabet.cpp \
 		Main.cpp States.cpp Tape_Alphabet.cpp Tape.cpp \
 		Transition.cpp Transition_Function.cpp \
-		pushdown_automaton.cpp Uppercase.cpp 
+		Turing_Machine.cpp Uppercase.cpp 
 OBJS = $(SRCS:.cpp=.o)
 
 
@@ -29,7 +29,7 @@ immaculate: clean
 		Direction.h Final_States.h Input_Strings.h \
 		input_alphabet.h States.h Tape_Alphabet.h \
 		Tape.h Transition.h Transition_Function.h \
-		pushdown_automaton.h Uppercase.h
+		Turing_Machine.h Uppercase.h
 	$(CXX) -c $(CXXFLAGS) $<
 
 depend:

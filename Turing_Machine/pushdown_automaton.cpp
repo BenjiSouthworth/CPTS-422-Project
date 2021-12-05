@@ -1,4 +1,4 @@
-#include "Turing_Machine.h"
+#include "pushdown_automaton.h"
 #include "States.h"
 #include "input_alphabet.h"
 #include "Uppercase.h"
@@ -11,10 +11,13 @@
 using namespace std;
 
 
-Turing_Machine::Turing_Machine() :tape(), input_alphabet(), tape_alphabet(), transition_function(), states(), final_states(),description({}), initial_state(" "), current_state(" "), original_input_string(" "), number_of_transitions(0), valid(true), used(false), operating(false),accepted(false), rejected(false){}
+Turing_Machine::Turing_Machine() :tape(), input_alphabet(), tape_alphabet(), transition_function(), states(), final_states(),
+description({}), initial_state(" "), current_state(" "), original_input_string(" "), number_of_transitions(0), valid(true), used(false), operating(false),
+accepted(false), rejected(false)
+{}
 
 
-void Turing_Machine::load(string definition_file_name) 
+void Turing_Machine::load(string definition_file_name) //loading a PDA from a PDA.def
 {
 	string value;
 	ifstream def_file;
