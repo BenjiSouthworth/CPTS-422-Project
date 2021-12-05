@@ -61,6 +61,14 @@ void Commands::runtime()
 
 		switch (input)
 		{
+		case 'C': case 'c':
+            close();
+            break;
+
+		case 'P': case 'p':
+            display();
+            break;
+
 		case 'X': case 'x':
 			exit_application();
 			break;
@@ -75,6 +83,10 @@ void Commands::runtime()
 
 		case 'L': case 'l':
 			list();
+			break;
+
+		case 'O': case 'o':
+			open();
 			break;
 
 		case 'Q': case 'q':
@@ -96,14 +108,6 @@ void Commands::runtime()
             view();
 			break;
 
-        case 'D': case 'd':
-            display();
-            break;
-
-        case 'C': case 'c':
-            close();
-            break;
-
 		default:
 			cout << "Please Enter a valid Command" << endl;
 		}
@@ -117,7 +121,20 @@ void Commands::exit_application()
 
 void Commands::help()
 {
-	cout << "D - Delete      Delete a String from input\nX - Exit        Exit the application\nH - Help        Display list of Commands\nI - Insert      Insert an input string into the list\nL - List        List all input strings\nQ - Quit        Quit operation of TM on input string\nR - Run         Run TM on input string\nE - Set         Set maximum amount of transitions to perform\nW - Show        Show status of application\nT - Truncate    Truncate instantanious descriptions\nV - View        View the TM";
+	//cout << "D - Delete      Delete a String from input\nX - Exit        Exit the application\nH - Help        Display list of Commands\nI - Insert      Insert an input string into the list\nL - List        List all input strings\nQ - Quit        Quit operation of TM on input string\nR - Run         Run TM on input string\nE - Set         Set maximum amount of transitions to perform\nW - Show        Show status of application\nT - Truncate    Truncate instantanious descriptions\nV - View        View the TM";
+	cout << "C - Close \tClose the Pushdown Automaton\n";
+	cout << "P - Display\tDisplay the Pushdown Automaton\n";
+	cout << "X - Exit\tExit the Application\n";
+	cout << "H - Help\tHelp Command\n";
+	cout << "I - Insert\tInsert an Input String into the Input Strings List\n";
+	cout << "L - List\tList all Input Strings held in the Input Strings File\n";
+	cout << "O - Open\tOpen a Pushdown Automaton Definition File\n";
+	cout << "Q - Quit\tQuit Operation of a Pushdown Automaton on an Input String\n";
+	cout << "R - Run \tRun Pushdown Automaton on a Input String\n";
+	cout << "E - Set \tSet the Maximum number of Transitions\n";
+	cout << "W - Show\tShow the Status of the Application\n";
+	cout << "V - View\tView the Current Pushdown Automaton";
+
 	cout << endl;
 }
 
@@ -209,4 +226,9 @@ void Commands::display()
 
 void Commands::close()
 {
+}
+
+void Commands::open()
+{
+	
 }
