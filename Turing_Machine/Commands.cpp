@@ -114,6 +114,14 @@ void Commands::runtime()
 	}
 }
 
+void Commands::close()
+{
+}
+
+void Commands::display()
+{
+}
+
 void Commands::exit_application()
 {
 	exitcase = 1;
@@ -162,6 +170,11 @@ void Commands::insert_string()
 void Commands::list()
 {
 	input_strings.view();
+}
+
+void Commands::open()
+{
+	
 }
 
 void Commands::quit()
@@ -218,17 +231,4 @@ void Commands::view()
 
     if(f.is_open())
         cout << f.rdbuf();
-}
-
-void Commands::display()
-{
-}
-
-void Commands::close()
-{
-}
-
-void Commands::open()
-{
-	
 }

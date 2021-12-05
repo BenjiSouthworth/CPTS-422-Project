@@ -18,8 +18,11 @@ private:
 public:
 	Commands(ifstream& definition, ifstream& stringfile, string def_file, string str_file);
 	Commands(ifstream& definition);
-
 	void runtime();
+
+	void close();
+	
+    void display();
 	
 	void exit_application();
 
@@ -28,6 +31,8 @@ public:
 	void insert_string();
 
 	void list();
+
+    void open();
 
 	void quit();
 
@@ -38,12 +43,6 @@ public:
 	void show();
 
 	void view();
-
-    void display();
-
-    void open();
-
-    void close();
 };
 
 #endif
