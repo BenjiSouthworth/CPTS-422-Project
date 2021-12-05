@@ -2,7 +2,7 @@
 #define Tape_H
 
 #include "input_alphabet.h"
-#include "Tape_Alphabet.h"
+#include "stack_alphabet.h"
 #include "Direction.h"
 #include <string>
 

@@ -1,5 +1,5 @@
 #include "input_alphabet.h"
-#include "Tape_Alphabet.h"
+#include "stack_alphabet.h"
 #include "Transition.h"
 #include "Direction.h"
 #include "Uppercase.h"

@@ -2,7 +2,7 @@
 #define Input_Alphabet_H
 
 #include "Direction.h"
-#include "Tape_Alphabet.h"
+#include "stack_alphabet.h"
 
 #include <string>
 #include <vector>

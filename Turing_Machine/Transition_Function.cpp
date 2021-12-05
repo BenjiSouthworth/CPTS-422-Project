@@ -1,6 +1,6 @@
 #include "Transition_Function.h"
 #include "Transition.h"
-#include "Tape_Alphabet.h"
+#include "stack_alphabet.h"
 #include "States.h"
 #include "Final_States.h"
 #include "Direction.h"

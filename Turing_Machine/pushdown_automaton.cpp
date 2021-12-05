@@ -28,6 +28,7 @@ void Turing_Machine::load(string definition_file_name) //loading a PDA from a PD
 		while (def_file >> value)
 		{
 
+
 			if (uppercase(value) != "STATES:")
 			{
 				description.push_back(value);

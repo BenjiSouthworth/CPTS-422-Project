@@ -2,7 +2,7 @@
 #define Transition_Function_H
 
 #include "Transition.h"
-#include "Tape_Alphabet.h"
+#include "stack_alphabet.h"
 #include "States.h"
 #include "Final_States.h"
 #include "Direction.h"

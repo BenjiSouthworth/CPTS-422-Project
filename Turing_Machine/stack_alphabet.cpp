@@ -1,9 +1,10 @@
-#include "Tape_Alphabet.h"
+#include "stack_alphabet.h"
 #include "Direction.h"
 #include "Uppercase.h"
 
 #include <fstream>
 #include <iostream>
+
 
 using namespace std;
 

@@ -1,9 +1,9 @@
 #ifndef Pushdown_Automaon_H
 #define Pushdown_Automaon_H
 
-#include "Tape.h"
+#include "stack.h"
 #include "input_alphabet.h"
-#include "Tape_Alphabet.h"
+#include "stack_alphabet.h"
 #include "Transition_Function.h"
 #include "States.h"
 #include "Final_States.h"
@@ -12,6 +12,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+
 
 using namespace std;
 

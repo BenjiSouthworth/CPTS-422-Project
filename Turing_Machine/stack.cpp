@@ -1,6 +1,6 @@
-#include "Tape.h"
+#include "stack.h"
 #include "input_alphabet.h"
-#include "Tape_Alphabet.h"
+#include "stack_alphabet.h"
 #include "Direction.h"
 #include "Uppercase.h"
 #include <string>

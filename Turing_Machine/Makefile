@@ -10,7 +10,7 @@ CXX = g++
 
 SRCS =  Commands.cpp Configuration_Settings.cpp \
 		Final_States.cpp Input_Strings.cpp input_alphabet.cpp \
-		Main.cpp States.cpp Tape_Alphabet.cpp Tape.cpp \
+		Main.cpp States.cpp stack_alphabet.cpp stack.cpp \
 		Transition.cpp Transition_Function.cpp \
 		pushdown_automaton.cpp Uppercase.cpp 
 OBJS = $(SRCS:.cpp=.o)
@@ -27,8 +27,8 @@ immaculate: clean
 
 %.o: %.cpp Commands.h Configuration_Settings.h \
 		Direction.h Final_States.h Input_Strings.h \
-		input_alphabet.h States.h Tape_Alphabet.h \
-		Tape.h Transition.h Transition_Function.h \
+		input_alphabet.h States.h stack_alphabet.h \
+		stack.h Transition.h Transition_Function.h \
 		pushdown_automaton.h Uppercase.h
 	$(CXX) -c $(CXXFLAGS) $<
 

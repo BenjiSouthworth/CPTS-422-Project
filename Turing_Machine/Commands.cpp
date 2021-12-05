@@ -16,11 +16,10 @@ extern string pda_file;
 Commands::Commands(ifstream& definition, ifstream& stringfile, string def_file, string str_file)
 {//this is the case if both files exist
 	
-	configuration_settings.set_truncate(32);
+	configuration_settings.set_transitions(5);
 	
 	//read in the definition file
 	turing_machine.load(def_file); //THIS IS WHAT NEEDS TO BE MODIFIED TO WORK WITH NEW DEF FILE TYPE
-	
 	//cout << def_file << " has been successfully loaded!" << endl;
 
 
@@ -36,20 +35,24 @@ Commands::Commands(ifstream& definition, ifstream& stringfile, string def_file, 
 		string_file >> value;
 	}
 
+
+
 	runtime(); //loop until user exits
-	
-	
+
 	//input_strings.write_file(str_file);
 }
 
 Commands::Commands(ifstream& definition)
 {
 	//this is the case if only definition file exists
+	//configuration_settings.set_truncate(32);
+	runtime(); //loop until user exits
 	
 }
 
 void Commands::runtime()
 {
+	configuration_settings.set_transitions(5);
 
 	while (exitcase == 0)
 	{
@@ -195,8 +198,27 @@ void Commands::list()
 
 void Commands::open()
 {
-	string pda_def_name = "";
+	string pda_def_name;
 
+	// cout << "Enter PDA File Name: ";
+	// getline(cin,pda_def_name);
+	// if(pda_def_name == "")
+	// {
+	// 	cout << "\n";
+	// 	return;
+	// }
+
+	// cout << "Opening " << pda_def_name << "...\n";
+
+	// //if successful, update is_pda_loaded to 1
+
+	// turing_machine.load(def_file);
+	// is_pda_loaded = 1;
+
+
+	ifstream def_file;
+	string def = ".def";
+	
 	cout << "Enter PDA File Name: ";
 	getline(cin,pda_def_name);
 	if(pda_def_name == "")
@@ -204,11 +226,23 @@ void Commands::open()
 		cout << "\n";
 		return;
 	}
+	cout << "Opening " << pda_def_name << "...\n";
+	pda_def_name.append(def);
 
-	cout << "Attempting to open " << pda_def_name << "...\n";
+	def_file.open(pda_def_name);
 
-	//if successful, update is_pda_loaded to 1
-	is_pda_loaded = 1;
+	if (def_file.is_open() == 0)
+	{
+		cout << "Error: the definition file failed to open!" << endl;
+	}
+	else if(def_file.is_open() == 1)
+	{
+		//begin reading in the definition file
+		turing_machine.load(pda_def_name);
+		pda_file = pda_def_name;
+		is_pda_loaded = 1;
+	}
+	def_file.close();
 }
 
 void Commands::quit()
@@ -232,13 +266,15 @@ void Commands::run()
 	}
 	else if(is_pda_running == 0 && is_pda_loaded == 1)
 	{
+
 		string input_str;
 		int str_num;
+		input_strings.view();
 		cout << "Select Input String Number: \n";
 		cin >>str_num;
 		
 		//turing_machine.initialize(input_str);
-		cout << "Begin running on string " << str_num<< endl;
+		cout << "Begin Running on Input String " << str_num<< endl;
 		is_pda_running = 1;
 	}
 	else if(is_pda_running == 1)
