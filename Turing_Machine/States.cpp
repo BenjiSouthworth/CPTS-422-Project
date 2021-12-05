@@ -42,10 +42,43 @@ void States::load(ifstream& definition, bool& valid)
 	
 }
 
+//vector<string> names;
+
 void States::view()
 {
-
+	if (names.empty())
+	{
+ 		cout << "Error: States list is empty\n\n";
+	}
+	else
+	{
+		cout << "STATES: ";
+		for (unsigned int i = 0; i < names.size(); ++i)
+		{
+			cout << names[i] << " ";
+		}
+		cout << "\n\n";
+	}
 }
+
+//vector<string> string_list;
+
+// void Input_Strings::view() const
+// {
+// 	if (string_list.empty())
+// 	{
+// 		cout << "Error: Input string list is empty\n\n";
+// 	}
+// 	else
+// 	{
+// 		for (unsigned int i = 0; i < string_list.size(); ++i)
+// 		{
+// 			int count = i + 1;
+// 			cout << count << ". " << string_list[i] << endl;
+// 		}
+// 		cout << "\n";
+// 	}
+// }
 
 bool States::is_element(string in_value) const
 {

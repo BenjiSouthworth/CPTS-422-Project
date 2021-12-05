@@ -13,7 +13,7 @@ using namespace std;
 Tape::Tape() :
 	Cells(" "),
 	Current_Cell(0),
-	Blank_Character(' ')
+	Start_Character(' ')
 {
 }
 
@@ -26,43 +26,42 @@ void Tape::Load(ifstream& definition, bool& valid)
 		(value[0] != '<') && (value[0] != '>') &&
 		(value[0] >= '!') && (value[0] <= '~'))
 	{
-		Blank_Character = value[0];
+		Start_Character = value[0];
 	}
 	else
 	{
-		cout << "Illegal Blank Character.\n";
+		cout << "Illegal Start Character.\n";
 		valid = false;
 	}
 	if ((!(definition >> value)) || (uppercase(value) != "FINAL_STATES:"))
 	{
-	cout << "Missing keyword after blank character.\n";
+	cout << "Missing keyword after Start character.\n";
 	valid = false;
 	}
-	
 }
 
 void Tape::Validate(const Input_Alphabet& Input_Alphabet, const Tape_Alphabet& Tape_Alphabet, bool& valid) const
 {
-	if (Input_Alphabet.is_element(Blank_Character))
+	if (Input_Alphabet.is_element(Start_Character))
 	{
-		cout << "Blank Character" << Blank_Character << " is in input alphabet.\n";
+		cout << "Start Character" << Start_Character << " is in input alphabet.\n";
 		valid = false;
 	}
-	if (!Tape_Alphabet.is_element(Blank_Character))
+	if (!Tape_Alphabet.is_element(Start_Character))
 	{
-		cout << "Blank Character" << Blank_Character << " is not in tape alphabet.\n";
+		cout << "START_CHARACTER: " << Start_Character << " is not in tape alphabet.\n";
 		valid = false;
 	}
 }
 
-void Tape::View() const
+void Tape::view() const
 {
-	cout << "B= " << Blank_Character << "\n\n";
+	cout << "START_CHARACTER: " << Start_Character << "\n\n";
 }
 
 void Tape::Initialize(string input_string)
 {
-	Cells = input_string + Blank_Character;
+	Cells = input_string + Start_Character;
 	Current_Cell = 0;
 }
 
@@ -76,7 +75,7 @@ void Tape::Update(char write_character, direction move_direction)
 	}
 	if ((move_direction == 'R') && (Current_Cell == Cells.length() - 1))
 	{
-		Cells += Blank_Character;
+		Cells += Start_Character;
 	}
 	Cells[Current_Cell] = write_character;
 	if (move_direction == 'L')
@@ -101,7 +100,7 @@ string Tape::Left(int maximum_number_of_cells) const
 string Tape::Right(int maximum_number_of_cells) const
 {
 	int end_cell = Cells.length() - 1;
-	while ((end_cell >= Current_Cell) && (Cells[end_cell] == Blank_Character))
+	while ((end_cell >= Current_Cell) && (Cells[end_cell] == Start_Character))
 	{
 		--end_cell;
 	}

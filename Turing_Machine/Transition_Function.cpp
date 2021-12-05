@@ -147,13 +147,26 @@ void Transition_Function::validate(const Tape_Alphabet& tape_alphabet,
 	}
 }
 
+	// string source_state;
+	// char read_character;
+	// string destination_state;
+	// char write_character;
+	// direction move_direction;
 
 void Transition_Function::view() const
 {
+	cout << "TRANSITION_FUNCTION: " << endl;
 	for (int i = 0; i < transitions.size(); i++)
 	{
+		
 		cout << transitions[i].source_state() << " ";
+		cout << transitions[i].read_character() << "   ";
+		cout << transitions[i].destination_state() << " ";
+		cout << transitions[i].write_character() << " ";
+		cout << transitions[i].move_direction() << " ";
+		cout << "\n";
 	}
+	cout << "\n\n";
 }
 
 

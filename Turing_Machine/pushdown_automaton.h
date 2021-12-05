@@ -44,7 +44,7 @@ public:
 	
 	void load(string definition_file_name);
 
-	void view_definition() const;
+	void view_definition();
 
 	void view_instentaneous_Description(int maximum_number_of_cells) const;
 

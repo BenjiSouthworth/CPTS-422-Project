@@ -40,10 +40,12 @@ void Tape_Alphabet::load(ifstream& definition, bool& valid)
 
 void Tape_Alphabet::view()
 {
+	cout << "STACK_ALPHABET: ";
 	for (int i = 0; i < tape_alphabet.size(); i++)
 	{
 		cout << tape_alphabet[i] << " ";
 	}
+	cout << "\n\n";
 }
 
 bool Tape_Alphabet::is_element(char value) const

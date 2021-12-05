@@ -41,10 +41,12 @@ void Final_States::validate(bool& valid)
 
 void Final_States::view()
 {
+	cout << "FINAL_STATES: ";
 	for (int i = 0; i < final_states_list.size(); i++)
 	{
 		cout << final_states_list[i];
 	}
+	cout << "\n\n";
 }
 
 bool Final_States::is_element(string in_value) const

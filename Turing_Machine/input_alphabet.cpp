@@ -50,7 +50,20 @@ void Input_Alphabet::validate(const Tape_Alphabet& tape_alphabet, bool& valid) c
 
 void Input_Alphabet::view() const
 {
-	
+	if (alphabet.empty())
+	{
+ 		cout << "Error: Input Alphabet list is empty\n\n";
+	}
+	else
+	{
+		cout << "INPUT_ALPHABET: ";
+		for (unsigned int i = 0; i < alphabet.size(); ++i)
+		{
+			
+			cout << alphabet[i] << " ";
+		}
+		cout << "\n\n";
+	}
 }
 
 

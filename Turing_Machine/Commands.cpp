@@ -52,7 +52,7 @@ Commands::Commands(ifstream& definition)
 
 void Commands::runtime()
 {
-	configuration_settings.set_transitions(5);
+	configuration_settings.set_transitions(1);
 
 	while (exitcase == 0)
 	{
@@ -255,6 +255,7 @@ void Commands::open()
 		}
 		cout << "Success " << string_file_name << " Opened\n";
 	}
+
 }
 
 void Commands::quit()
@@ -266,6 +267,7 @@ void Commands::quit()
 	else if(is_pda_running == 1)
 	{
 		cout << "Quitting running on the current input string\n";
+		//delete current running tree and stop running.
 		is_pda_running = 0;
 	}
 }
@@ -284,9 +286,10 @@ void Commands::run()
 		input_strings.view();
 		cout << "Select Input String Number: \n";
 		cin >>str_num;
+		cout << "Begin Running on Input String " << str_num<< endl;
+
 		
 		//turing_machine.initialize(input_str);
-		cout << "Begin Running on Input String " << str_num<< endl;
 		is_pda_running = 1;
 	}
 	else if(is_pda_running == 1)
@@ -297,43 +300,75 @@ void Commands::run()
 
 void Commands::set() //need to setup checking values here, so that its only ints, and if press enter exit command.
 {
+	string number;
 	int num;
 	int transitions = configuration_settings.get_transitions();
+
 	cout << "Number of Transitions[" << transitions << "]: ";
-	cin >> num;
-	if (cin.fail()) // Because 'value' is an integer, cin.fail() will be true, because it did not receive an integer
-	{
-		cout << "Error! Please enter an int" << endl;
-	}
-	//getline(cin, num);
-	//if (num != int)
+	getline(cin,number);
+	//cin >> num;
+	if(number == "")
 	{
 		//cout << "\n";
-		//return;
+		return;
 	}
+	//num =stoi(number);
+
+	if (cin.fail()) // Because 'value' is an integer, cin.fail() will be true, because it did not receive an integer
+	{
+		cout << "\nError! Please enter an int" << endl;
+		cin >> num;
+		return;
+	}
+	num =stoi(number);
+
+	// else if(num == '\0')
+	// {
+	// 	cout << "\n";
+	// 	return;
+	// }
+
+	//getline(cin, num);
+	//if (num != int)
+	//{
+		//cout << "\n";
+		//return;
+	//}
 	if (num < 0)
 	{
 		cout << "Please enter a number larger than 0." << endl;
 		return;
 	}
-	configuration_settings.set_transitions(num);
-	cout << "Number of Transitions changed to " << configuration_settings.get_transitions() << endl;
-
+	else
+	{
+		configuration_settings.set_transitions(num);
+		cout << "Number of Transitions changed to " << configuration_settings.get_transitions() << endl;
+	}
 }
 
 void Commands::show()
 {
-	cout << "Course: CPTS422 \nSemester: Fall\nYear: 2021\nInstructor: Luis De La Torre\nAuthor: Benjamin Southworth\nVersion: 1.0.0\n\n";
-	cout << "Transitions: " << configuration_settings.get_transitions() << endl << "Truncate: " << configuration_settings.get_truncate() << endl;
-	cout << "Name: anbn" << endl;
-	cout << "Status: \n";
-	cout << "Status of List of Input Strings: \n";
+	cout << "Course: CPTS422 \nSemester: Fall\nYear: 2021\nInstructor: Luis De La Torre\nVersion: 1.0.0\n\n";
+	cout << "Transitions: " << configuration_settings.get_transitions()<< endl;
+	cout << "Name: " << pda_file << endl;
+	if(is_pda_running == 1)
+	{
+	cout << "Status: PDA is currently running on an Input String\n";
+	}
+	else
+	{
+		cout << "Status: PDA is currently not running\n";
+	}
 }
 
 void Commands::view()
 {
-    ifstream f(pda_file);
-
-    if(f.is_open())
-        cout << f.rdbuf();
+	if(is_pda_loaded== 1)
+	{
+		turing_machine.view_definition();
+	}
+	else
+	{
+		cout << "Error: No PDA Definition has been loaded\n";
+	}
 }

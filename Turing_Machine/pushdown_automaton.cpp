@@ -44,7 +44,8 @@ void Turing_Machine::load(string definition_file_name) //loading a PDA from a PD
 				states.load(def_file, valid);
 				input_alphabet.load(def_file, valid);
 				tape_alphabet.load(def_file, valid);
-				transition_function.load(def_file, valid);
+				
+				transition_function.load(def_file, valid); //THIS IS THE FUNCTION I NEED TO MODIFY
 
 				
 				def_file >> value;
@@ -57,7 +58,15 @@ void Turing_Machine::load(string definition_file_name) //loading a PDA from a PD
 			}
 		}
 	}
-	def_file.close();
+	// view_definition();
+	// states.view(); //view states
+	// input_alphabet.view(); //view input alphabet characters
+	// tape_alphabet.view(); //view stack alphabet
+	// transition_function.view();
+	// cout <<"INITIAL_STATE: " << initial_state << endl << endl;
+	// tape.view();//start character
+	// final_states.view(); //view final states
+	// def_file.close();
 }
 
 bool Turing_Machine::is_valid_input_string(string value) const
@@ -77,8 +86,19 @@ void Turing_Machine::initialize(string input_string)
 	tape.Initialize(input_string);
 }
 
-
-void Turing_Machine::view_definition() const
+//vector<string> description;
+void Turing_Machine::view_definition()
 {
-	
+	for(int i = 0; i < description.size(); i++)
+	{
+		cout << description[i] << " ";
+	}
+	cout << endl << endl;
+	states.view(); //view states
+	input_alphabet.view(); //view input alphabet characters
+	tape_alphabet.view(); //view stack alphabet
+	transition_function.view();
+	cout <<"INITIAL_STATE: " << initial_state << endl << endl;
+	tape.view();//start character
+	final_states.view(); //view final states
 }

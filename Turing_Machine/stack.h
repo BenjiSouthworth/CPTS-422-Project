@@ -15,7 +15,7 @@ class Tape
     private:
 	string Cells;
 	int Current_Cell;
-	char Blank_Character;
+	char Start_Character;
 
     public:
 	Tape();
@@ -23,7 +23,7 @@ class Tape
 
 	void Validate(const Input_Alphabet &Input_Alphabet, const Tape_Alphabet &Tape_Alphabet, bool &valid) const;
 
-	void View() const;
+	void view() const;
 
 	void Initialize(string input_string);
 
