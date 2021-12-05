@@ -36,9 +36,10 @@ Commands::Commands(ifstream& definition, ifstream& stringfile, string def_file, 
 		string_file >> value;
 	}
 
-	//loop until user exits
-	runtime();
-	input_strings.write_file(str_file);
+	runtime(); //loop until user exits
+	
+	
+	//input_strings.write_file(str_file);
 }
 
 Commands::Commands(ifstream& definition)
@@ -90,6 +91,7 @@ void Commands::runtime()
 			break;
 
 		case 'Q': case 'q':
+			quit();
 			break;
 
 		case 'R': case 'r':
@@ -114,16 +116,35 @@ void Commands::runtime()
 	}
 }
 
-void Commands::close()
+void Commands::close() //closes the currently running PDA, allows the user to load a new PDA
 {
+	if(is_pda_loaded == 1)
+	{
+		cout << "Closing the Current Pushdown Automaton..\n\nPlease Select a new PDA with the 'Open' Command\n";
+		is_pda_loaded = 0;
+	}
+	else if (is_pda_loaded == 0)
+	{
+		cout << "Error: No PDA has been loaded.\n";
+	}
+	//Update a variable that tells the program that PDA cannot be ran currently
 }
 
-void Commands::display()
+void Commands::display() 	//displays current paths through the PDA, will only work if PDA is currently running
 {
+	if(is_pda_running == 0)
+	{
+		cout << "Error: No PDA is Currently Running\n";
+	}
+	else if(is_pda_running == 1)
+	{
+		//print all current paths of the PDA
+	}
+
 }
 
 void Commands::exit_application()
-{
+{ //exits the application
 	exitcase = 1;
 }
 
@@ -174,20 +195,56 @@ void Commands::list()
 
 void Commands::open()
 {
-	
+	string pda_def_name = "";
+
+	cout << "Enter PDA File Name: ";
+	getline(cin,pda_def_name);
+	if(pda_def_name == "")
+	{
+		cout << "\n";
+		return;
+	}
+
+	cout << "Attempting to open " << pda_def_name << "...\n";
+
+	//if successful, update is_pda_loaded to 1
+	is_pda_loaded = 1;
 }
 
 void Commands::quit()
 {
+	if(is_pda_running == 0)
+	{
+		cout << "Error: No PDA is currently Running on an input string\n";
+	}
+	else if(is_pda_running == 1)
+	{
+		cout << "Quitting running on the current input string\n";
+		is_pda_running = 0;
+	}
 }
 
 void Commands::run()
 {
-	string input_str;
-	int str_num;
-	cout << "Select Input String Number: \n";
-	
-	turing_machine.initialize(input_str);
+	if(is_pda_loaded == 0)
+	{
+		cout << "Error: Open a PDA definition file before running\n";
+	}
+	else if(is_pda_running == 0 && is_pda_loaded == 1)
+	{
+		string input_str;
+		int str_num;
+		cout << "Select Input String Number: \n";
+		cin >>str_num;
+		
+		//turing_machine.initialize(input_str);
+		cout << "Begin running on string " << str_num<< endl;
+		is_pda_running = 1;
+	}
+	else if(is_pda_running == 1)
+	{
+		//continue running the PDA
+	}
 }
 
 void Commands::set() //need to setup checking values here, so that its only ints, and if press enter exit command.
@@ -218,7 +275,7 @@ void Commands::set() //need to setup checking values here, so that its only ints
 
 void Commands::show()
 {
-	cout << "Course: CPTS322 \nSemester: Spring\nYear: 2020\nInstructor: Neil Corrigan\nAuthor: Benjamin Southworth\nVersion: 0.9.0\n\n";
+	cout << "Course: CPTS422 \nSemester: Fall\nYear: 2021\nInstructor: Luis De La Torre\nAuthor: Benjamin Southworth\nVersion: 1.0.0\n\n";
 	cout << "Transitions: " << configuration_settings.get_transitions() << endl << "Truncate: " << configuration_settings.get_truncate() << endl;
 	cout << "Name: anbn" << endl;
 	cout << "Status: \n";

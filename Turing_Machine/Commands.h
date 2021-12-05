@@ -15,6 +15,10 @@ private:
 	Input_Strings input_strings;
 	Configuration_Settings configuration_settings;
 
+	//newly added variables below
+	int is_pda_running = 0; //0 No, 1 Yes
+	int is_pda_loaded = 0; //0 No, 1 Yes
+
 public:
 	Commands(ifstream& definition, ifstream& stringfile, string def_file, string str_file);
 	Commands(ifstream& definition);
