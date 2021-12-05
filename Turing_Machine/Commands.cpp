@@ -198,23 +198,9 @@ void Commands::list()
 
 void Commands::open()
 {
+//LOAD THE DEFINITION FILE
 	string pda_def_name;
-
-	// cout << "Enter PDA File Name: ";
-	// getline(cin,pda_def_name);
-	// if(pda_def_name == "")
-	// {
-	// 	cout << "\n";
-	// 	return;
-	// }
-
-	// cout << "Opening " << pda_def_name << "...\n";
-
-	// //if successful, update is_pda_loaded to 1
-
-	// turing_machine.load(def_file);
-	// is_pda_loaded = 1;
-
+	string string_file_name;
 
 	ifstream def_file;
 	string def = ".def";
@@ -226,6 +212,8 @@ void Commands::open()
 		cout << "\n";
 		return;
 	}
+	string_file_name = pda_def_name;
+
 	cout << "Opening " << pda_def_name << "...\n";
 	pda_def_name.append(def);
 
@@ -233,7 +221,7 @@ void Commands::open()
 
 	if (def_file.is_open() == 0)
 	{
-		cout << "Error: the definition file failed to open!" << endl;
+		cout << "Error: the Definition File failed to open!" << endl;
 	}
 	else if(def_file.is_open() == 1)
 	{
@@ -241,8 +229,32 @@ void Commands::open()
 		turing_machine.load(pda_def_name);
 		pda_file = pda_def_name;
 		is_pda_loaded = 1;
+		cout << "Success " << pda_def_name << " Opened\n";
 	}
 	def_file.close();
+
+//LOAD THE INPUT STRING FILE
+	ifstream string_file;
+	string value;
+
+	string str = ".str";
+	string_file_name.append(str);
+	string_file.open(string_file_name);
+
+	if (string_file.is_open() == 0)
+	{
+		cout << "Error: the Input String file failed to open!" << endl;
+	}
+	else if(string_file.is_open() == 1)
+	{
+		string_file >> value;
+		while (string_file.eof() == 0)
+		{
+			input_strings.write_string(value);
+			string_file >> value;
+		}
+		cout << "Success " << string_file_name << " Opened\n";
+	}
 }
 
 void Commands::quit()
