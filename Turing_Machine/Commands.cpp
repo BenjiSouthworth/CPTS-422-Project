@@ -119,39 +119,49 @@ void Commands::runtime()
 	}
 }
 
-void Commands::close() //closes the currently running PDA, allows the user to load a new PDA
+int Commands::close() //closes the currently running PDA, allows the user to load a new PDA
 {
 	if(is_pda_loaded == 1)
 	{
 		cout << "Closing the Current Pushdown Automaton..\n\nPlease Select a new PDA with the 'Open' Command\n";
 		is_pda_loaded = 0;
+		
+		return 0;
 	}
 	else if (is_pda_loaded == 0)
 	{
 		cout << "Error: No PDA has been loaded.\n";
+		
+		return 1;
 	}
 	//Update a variable that tells the program that PDA cannot be ran currently
 }
 
-void Commands::display() 	//displays current paths through the PDA, will only work if PDA is currently running
+int Commands::display() 	//displays current paths through the PDA, will only work if PDA is currently running
 {
 	if(is_pda_running == 0)
 	{
 		cout << "Error: No PDA is Currently Running\n";
+		
+		return 1;
 	}
 	else if(is_pda_running == 1)
 	{
 		//print all current paths of the PDA
+		
+		return 0;
 	}
 
 }
 
-void Commands::exit_application()
+int Commands::exit_application()
 { //exits the application
 	exitcase = 1;
+	
+	return 0;
 }
 
-void Commands::help()
+int Commands::help()
 {
 	//cout << "D - Delete      Delete a String from input\nX - Exit        Exit the application\nH - Help        Display list of Commands\nI - Insert      Insert an input string into the list\nL - List        List all input strings\nQ - Quit        Quit operation of TM on input string\nR - Run         Run TM on input string\nE - Set         Set maximum amount of transitions to perform\nW - Show        Show status of application\nT - Truncate    Truncate instantanious descriptions\nV - View        View the TM";
 	cout << "C - Close \tClose the Pushdown Automaton\n";
@@ -166,11 +176,12 @@ void Commands::help()
 	cout << "E - Set \tSet the Maximum number of Transitions\n";
 	cout << "W - Show\tShow the Status of the Application\n";
 	cout << "V - View\tView the Current Pushdown Automaton";
-
 	cout << endl;
+	
+	return 0;
 }
 
-void Commands::insert_string()
+int Commands::insert_string()
 {
 	string value = "";
 
@@ -179,24 +190,30 @@ void Commands::insert_string()
 	if (value == "")
 	{
 		cout << "\n";
-		return;
+		
+		return 1;
 	}
 
 	else if (turing_machine.is_valid_input_string(value) == false)
 	{
 		cout << "Error: String Not Permitted";
-		return;
-	}
-	input_strings.write_string(value);
 
+		return 2;
+	}
+	// now the input is valid
+	input_strings.write_string(value);
+	
+	return 0;
 }
 
-void Commands::list()
+int Commands::list()
 {
 	input_strings.view();
+	
+	return 0;
 }
 
-void Commands::open()
+int Commands::open()
 {
 //LOAD THE DEFINITION FILE
 	string pda_def_name;
@@ -210,7 +227,7 @@ void Commands::open()
 	if(pda_def_name == "")
 	{
 		cout << "\n";
-		return;
+		return 0;
 	}
 	string_file_name = pda_def_name;
 
@@ -258,27 +275,33 @@ void Commands::open()
 
 }
 
-void Commands::quit()
+int Commands::quit()
 {
 	if(is_pda_running == 0)
 	{
 		cout << "Error: No PDA is currently Running on an input string\n";
+		
+		return 1;
 	}
 	else if(is_pda_running == 1)
 	{
 		cout << "Quitting running on the current input string\n";
 		//delete current running tree and stop running.
 		is_pda_running = 0;
+		
+		return 0;
 	}
 }
 
-void Commands::run()
+int Commands::run()
 {
-	if(is_pda_loaded == 0)
+	if(is_pda_loaded == 0)	// if pda is not loaded
 	{
 		cout << "Error: Open a PDA definition file before running\n";
+		
+		return 1;
 	}
-	else if(is_pda_running == 0 && is_pda_loaded == 1)
+	else if(is_pda_running == 0 && is_pda_loaded == 1)	// if pda is loaded but not running
 	{
 
 		string input_str;
@@ -287,14 +310,16 @@ void Commands::run()
 		cout << "Select Input String Number: \n";
 		cin >>str_num;
 		cout << "Begin Running on Input String " << str_num<< endl;
-
 		
 		//turing_machine.initialize(input_str);
 		is_pda_running = 1;
+		
+		return 0;
 	}
-	else if(is_pda_running == 1)
+	else if(is_pda_running == 1)	// if pda is running and loaded
 	{
 		//continue running the PDA
+		return 0;
 	}
 }
 
@@ -346,29 +371,35 @@ void Commands::set() //need to setup checking values here, so that its only ints
 	}
 }
 
-void Commands::show()
+int Commands::show()
 {
 	cout << "Course: CPTS422 \nSemester: Fall\nYear: 2021\nInstructor: Luis De La Torre\nVersion: 1.0.0\n\n";
 	cout << "Transitions: " << configuration_settings.get_transitions()<< endl;
 	cout << "Name: " << pda_file << endl;
 	if(is_pda_running == 1)
 	{
-	cout << "Status: PDA is currently running on an Input String\n";
+		cout << "Status: PDA is currently running on an Input String\n";
 	}
 	else
 	{
 		cout << "Status: PDA is currently not running\n";
 	}
+	
+	return 0;
 }
 
-void Commands::view()
+int Commands::view()
 {
 	if(is_pda_loaded== 1)
 	{
 		turing_machine.view_definition();
+		
+		return 0;
 	}
 	else
 	{
 		cout << "Error: No PDA Definition has been loaded\n";
+		
+		return 1;
 	}
 }

@@ -24,29 +24,29 @@ public:
 	Commands(ifstream& definition);
 	void runtime();
 
-	void close();
+	int close();
 	
-    void display();
+    int display();
 	
-	void exit_application();
+	int exit_application();
 
-	void help();
+	int help();
 
-	void insert_string();
+	int insert_string();
 
-	void list();
+	int list();
 
-    void open();
+    int open();
 
-	void quit();
+	int quit();
 
-	void run();
+	int run();
 
 	void set();
 
-	void show();
+	int show();
 
-	void view();
+	int view();
 };
 
 #endif
